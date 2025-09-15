@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini Scoop — Ice Cream Shop</title>
+  <style>
+    /* Reset & Fonts */
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      background: #1a1a1a url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU1tEHr-uLJ_2XRoE3rtrcdTQrILTIS1cu8Q&s') no-repeat center/cover;
+    }
+
+    /* Header */
+    header {
+      background: rgba(0,0,0,0.7);
+      padding: 12px 24px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {height: 45px; border-radius: 8px;}
+    header strong {font-size: 1.4rem; color: #ffd580; margin-left: 10px;}
+    .left {display: flex; align-items: center;}
+    nav a {
+      color: #ffd580;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 20px;
+      transition: color 0.3s;
+    }
+    nav a:hover {color: #fff;}
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: url('https://images.unsplash.com/photo-1621347338037-99e0dc21a2ff') no-repeat center/cover;
+      position: relative;
+      text-align: center;
+    }
+    .hero::after {
+      content:"";
+      position: absolute;
+      top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(0,0,0,0.55);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      padding: 20px;
+      animation: fadeIn 2s ease-out;
+    }
+    .hero img {
+      height: 100px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      animation: float 3s ease-in-out infinite;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: #ffd580;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    footer a {color: #ffd580; text-decoration: none;}
+    footer a:hover {text-decoration: underline;}
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity:0; transform: translateY(20px);}
+      to {opacity:1; transform: translateY(0);}
+    }
+    @keyframes float {
+      0% {transform: translateY(0);}
+      50% {transform: translateY(-10px);}
+      100% {transform: translateY(0);}
+    }
+
+    /* Add top padding so content isn't hidden behind header */
+    body {padding-top: 80px;}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="left">
+    <img src="Screenshot 2025-09-14 114715.png" alt="Mini Scoop Logo">
+    <strong>Mini Scoop</strong>
+  </div>
+  <nav>
+    <a href="menu.html">Menu</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <img src="Screenshot 2025-09-14 114715.png" alt="Mini Scoop Logo">
+    <h1>Welcome to Mini Scoop 🍨</h1>
+    <p>Delight in every scoop! Handcrafted with love,  
+       fresh ingredients, and a sprinkle of happiness.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Mini Scoop Ice Cream | Crafted with 🍦 & ❤️</p>
+  <p><a href="contact.html">Contact Us</a> | <a href="menu.html">Our Menu</a></p>
+</footer>
+
+</body>
+</html>
