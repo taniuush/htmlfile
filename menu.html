@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini Scoop — Ice Cream Menu</title>
+  <style>
+    body {
+      margin:0;
+      font-family: 'Segoe UI', sans-serif;
+      color:#111;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      background-attachment: fixed;
+    }
+    header {
+      background:rgba(34,40,49,0.9);
+      color:#fff;
+      padding:16px 24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      box-shadow:0 4px 20px rgba(0,0,0,0.3);
+    }
+    nav a {
+      color:#fdd9a0;
+      text-decoration:none;
+      font-weight:700;
+      margin-left:18px;
+      transition:color 0.3s;
+    }
+    nav a:hover {color:#fff;}
+    h1,h2{margin:0;}
+    .gallery {margin:30px;}
+    .gallery h2 {
+      text-align:center;
+      margin-bottom:24px;
+      font-size:2rem;
+      color:#6b2c14;
+      text-shadow:1px 1px 4px rgba(0,0,0,0.2);
+    }
+    .grid-4 {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+    }
+    .item {
+      background:rgba(255,255,255,0.85);
+      border-radius:16px;
+      padding:12px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      transition:transform 0.3s, box-shadow 0.3s;
+    }
+    .item:hover {
+      transform:translateY(-6px) scale(1.03);
+      box-shadow:0 12px 28px rgba(0,0,0,0.35);
+    }
+    .item img {
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      border-radius:12px;
+      cursor:pointer;
+      transition:transform 0.3s;
+    }
+    .item img:hover{transform:scale(1.05);}
+    .item p {
+      margin-top:10px;
+      font-weight:700;
+      text-align:center;
+      font-size:15px;
+      color:#3e1f0e;
+    }
+    @media(max-width:1024px){.grid-4{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:600px){.grid-4{grid-template-columns:1fr;} }
+
+    /* Modal */
+    .modal {
+      display:none;
+      position:fixed;
+      top:0;left:0;
+      width:100%;height:100%;
+      background:rgba(0,0,0,0.85);
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+      backdrop-filter: blur(8px);
+    }
+    .modal-content {
+      background:linear-gradient(145deg,#fff7f0,#ffe4cc);
+      padding:24px;
+      border-radius:20px;
+      max-width:500px;
+      width:90%;
+      text-align:center;
+      position:relative;
+      box-shadow:0 10px 30px rgba(0,0,0,0.5);
+      animation:fadeIn 0.4s ease;
+    }
+    .modal-content img {
+      width:100%;
+      max-height:280px;
+      object-fit:cover;
+      border-radius:14px;
+      margin-bottom:14px;
+    }
+    .modal-content h2 {
+      color:#5a1c09;
+      margin-bottom:10px;
+    }
+    .modal-content p {color:#222;font-size:1.05rem;margin:6px 0;}
+    .close {
+      position:absolute;
+      top:12px;
+      right:18px;
+      font-size:32px;
+      font-weight:bold;
+      color:#333;
+      cursor:pointer;
+      transition:color 0.2s;
+    }
+    .close:hover{color:#a22;}
+
+    @keyframes fadeIn {
+      from {opacity:0; transform:scale(0.9);}
+      to {opacity:1; transform:scale(1);}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div><strong>Mini Scoop</strong></div>
+  <nav>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="gallery">
+  <h2>🍦 Our Menu</h2>
+  <div class="grid-4">
+    <!-- 16 Flavors -->
+    <div class="item" onclick="openModal('salted')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_pLe6-gJXklvFc2tgPn5anxOlqoN_E26NDg&s" alt="Salted Honeycomb">
+      <p>Salted Honeycomb</p>
+    </div>
+    <div class="item" onclick="openModal('mango')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl0zTBYlwAAOIawh0j5SY9RT6T8NT4ogfXPQ&s" alt="Mango">
+      <p>Mango</p>
+    </div>
+    <div class="item" onclick="openModal('darkchoco')">
+      <img src="https://www.cadburydessertscorner.com/hs-fs/hubfs/dc-website-2022/articles/bournville-dark-chocolate-ice-cream-why-not/bournville-dark-chocolate-ice-cream-why-not-feature.webp?width=768&height=432&name=bournville-dark-chocolate-ice-cream-why-not-feature.webp" alt="Dark Choco Crunch">
+      <p>Dark Choco Crunch</p>
+    </div>
+    <div class="item" onclick="openModal('pistachio')">
+      <img src="https://www.temptingtreat.com/wp-content/uploads/2024/10/tender-coconut-ice-cream-p2-2.jpg" alt="Tender Coconut">
+      <p>Tender Coconut</p>
+    </div>
+    <div class="item" onclick="openModal('cookies')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYUKB_g1RcDp-NgOm44cc0l00n-JUJcedAoA&s" alt="Cookies & Cream">
+      <p>Cookies & Cream</p>
+    </div>
+    <div class="item" onclick="openModal('vanilla')">
+      <img src="https://www.foodandwine.com/thmb/QnTrAIt3aY1g4ToQEk-jULmKMsQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/vanilla-ice-cream-FT-RECIPE0324-cebca493f53c4431a0049ea65bfb4796.jpg" alt="Classic Vanilla">
+      <p>Classic Vanilla</p>
+    </div>
+    <div class="item" onclick="openModal('chocolate')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkS3SGeDhYGGmNXG3_0LXXE4a-kJN5VN6VGA&s" alt="Chocolate Fudge">
+      <p>Chocolate Fudge</p>
+    </div>
+    <div class="item" onclick="openModal('strawberry')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQowdV1OM-ldC1C5bGeAYsygSxmmtEdCnYBfw&s" alt="Strawberry Delight">
+      <p>Strawberry Delight</p>
+    </div>
+    <div class="item" onclick="openModal('mint')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmFuWK7iAnuc0gq5c-UQQLf9j568cnj2QF5g&s" alt="Mini Choco Chip">
+      <p>Mini Choco Chip</p>
+    </div>
+    <div class="item" onclick="openModal('blueberry')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2zNmeWOGQDRJPRqOkiwWV8d5px2VujityVQ&s" alt="Blueberry Bliss">
+      <p>Blueberry Bliss</p>
+    </div>
+    <div class="item" onclick="openModal('tiramisu')">
+      <img src="https://diethood.com/wp-content/uploads/2011/07/tiramisu-ice-cream-8.jpg" alt="Tiramisu Swirl">
+      <p>Tiramisu Swirl</p>
+    </div>
+    <div class="item" onclick="openModal('caramel')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT922uj7zd-c-AZzsWKS1Fo1YHWrk9B8eis6A&s" alt="Caramel Crunch">
+      <p>Caramel Crunch</p>
+    </div>
+    <div class="item" onclick="openModal('coffee')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTchTJpOiKYmRIgM0nQscijIlllFS6FzfP-mQ&s" alt="Coffee Mocha">
+      <p>Coffee Mocha</p>
+    </div>
+    <div class="item" onclick="openModal('coconut')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5sCy8-XprBPUB0jutdoUVvL1VMrhABMaiDg&s" alt="Coconut Dream">
+      <p>Coconut Dream</p>
+    </div>
+    <div class="item" onclick="openModal('lemon')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzGBQCQZXri99Bbd6OXR2dtgJdHWl8q20CIA&s" alt="Lemon Sorbet">
+      <p>Lemon Sorbet</p>
+    </div>
+    <div class="item" onclick="openModal('matcha')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOFaThU3-KtxlL3t1ccy65n08Emiyxq5HlyA&s" alt="Matcha Green Tea">
+      <p>Matcha Green Tea</p>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="flavorModal" class="modal">
+  <div class="modal-content" id="modalContent">
+    <span class="close" onclick="closeModal()">&times;</span>
+  </div>
+</div>
+
+<script>
+  // Flavor data
+  const flavors = {
+    salted: {name:"Salted Honeycomb", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_pLe6-gJXklvFc2tgPn5anxOlqoN_E26NDg&s", scoop:"₹420 / scoop", family:"₹1499 / family pack"},
+    mango: {name:"Mango", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl0zTBYlwAAOIawh0j5SY9RT6T8NT4ogfXPQ&s", scoop:"₹375 / scoop", family:"₹1299 / family pack"},
+    darkchoco: {name:"Dark Choco Crunch", img:"https://www.cadburydessertscorner.com/hs-fs/hubfs/dc-website-2022/articles/bournville-dark-chocolate-ice-cream-why-not/bournville-dark-chocolate-ice-cream-why-not-feature.webp?width=768&height=432&name=bournville-dark-chocolate-ice-cream-why-not-feature.webp", scoop:"₹435 / scoop", family:"₹1599 / family pack"},
+    pistachio: {name:"Tender Coconut", img:"https://www.temptingtreat.com/wp-content/uploads/2024/10/tender-coconut-ice-cream-p2-2.jpg", scoop:"₹455 / scoop", family:"₹1699 / family pack"},
+    cookies: {name:"Cookies & Cream", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYUKB_g1RcDp-NgOm44cc0l00n-JUJcedAoA&s", scoop:"₹395 / scoop", family:"₹1399 / family pack"},
+    vanilla: {name:"Classic Vanilla", img:"https://www.foodandwine.com/thmb/QnTrAIt3aY1g4ToQEk-jULmKMsQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/vanilla-ice-cream-FT-RECIPE0324-cebca493f53c4431a0049ea65bfb4796.jpg", scoop:"₹350 / scoop", family:"₹1299 / family pack"},
+    chocolate: {name:"Chocolate Fudge", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkS3SGeDhYGGmNXG3_0LXXE4a-kJN5VN6VGA&s", scoop:"₹420 / scoop", family:"₹1499 / family pack"},
+    strawberry: {name:"Strawberry Delight", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQowdV1OM-ldC1C5bGeAYsygSxmmtEdCnYBfw&s", scoop:"₹390 / scoop", family:"₹1399 / family pack"},
+    mint: {name:"Mini Choco Chip", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmFuWK7iAnuc0gq5c-UQQLf9j568cnj2QF5g&s", scoop:"₹410 / scoop", family:"₹1490 / family pack"},
+    blueberry: {name:"Blueberry Bliss", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2zNmeWOGQDRJPRqOkiwWV8d5px2VujityVQ&s", scoop:"₹430 / scoop", family:"₹1550 / family pack"},
+    tiramisu: {name:"Tiramisu Swirl", img:"https://diethood.com/wp-content/uploads/2011/07/tiramisu-ice-cream-8.jpg", scoop:"₹470 / scoop", family:"₹1699 / family pack"},
+    caramel: {name:"Caramel Crunch", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT922uj7zd-c-AZzsWKS1Fo1YHWrk9B8eis6A&s", scoop:"₹440 / scoop", family:"₹1599 / family pack"},
+    coffee: {name:"Coffee Mocha", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTchTJpOiKYmRIgM0nQscijIlllFS6FzfP-mQ&s", scoop:"₹460 / scoop", family:"₹1650 / family pack"},
+    coconut: {name:"Coconut Dream", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5sCy8-XprBPUB0jutdoUVvL1VMrhABMaiDg&s", scoop:"₹400 / scoop", family:"₹1450 / family pack"},
+    lemon: {name:"Lemon Sorbet", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzGBQCQZXri99Bbd6OXR2dtgJdHWl8q20CIA&s", scoop:"₹370 / scoop", family:"₹1350 / family pack"},
+    matcha: {name:"Matcha Green Tea", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOFaThU3-KtxlL3t1ccy65n08Emiyxq5HlyA&s", scoop:"₹480 / scoop", family:"₹1750 / family pack"}
+  };
+
+  function openModal(key){
+    const f = flavors[key];
+    document.getElementById("modalContent").innerHTML = `
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img src="${f.img}" alt="${f.name}">
+      <h2>${f.name}</h2>
+      <p><strong>${f.scoop}</strong></p>
+      <p><strong>${f.family}</strong></p>
+    `;
+    document.getElementById("flavorModal").style.display = "flex";
+  }
+
+  function closeModal(){
+    document.getElementById("flavorModal").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
